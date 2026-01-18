@@ -1,0 +1,4 @@
+{
+  "policy_type": "heuristic_reward_selection",
+  "notes": "Demo policy chooses between candidate questions using transparent heuristic reward."
+}
