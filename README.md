@@ -39,3 +39,23 @@ python -m src.build_dataset
 python -m src.make_preferences
 python -m src.train_policy
 python -m src.evaluate
+
+## What running the demo produces
+After running the Quickstart commands, you should see:
+
+- `data/prompts.jsonl` — demo prompt/context pairs
+- `data/preferences.jsonl` — preference pairs: (prompt, chosen, rejected)
+- `results/policy.json` — demo “policy” configuration
+- `results/metrics.json` — evaluation metrics (e.g., win-rate)
+
+## Example preference record (demo)
+Each line in `data/preferences.jsonl` is a JSON object like:
+
+```json
+{
+  "id": "p001",
+  "context": "...",
+  "prompt": "...",
+  "chosen": "...",
+  "rejected": "..."
+}
