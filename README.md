@@ -1,33 +1,41 @@
 # RLHF Question Generation Pipeline (Representative Implementation)
 
 ## Overview
-This repository provides a clean, representative implementation of a pipeline for improving generated questions using preference data and policy optimization (DPO/GRPO-style).
+This repository provides a clean, representative implementation of a pipeline for improving generated questions using preference data and policy optimization (DPO/GRPO-style). It is designed to demonstrate system architecture, data flow, and evaluation in a public-safe way.
+
+## What this repo demonstrates
+- Dataset construction (demo-scale ETL)
+- Preference data formatting: (prompt, chosen, rejected)
+- Reward/scoring logic (demo-safe)
+- Policy improvement loop (demo-scale)
+- Offline evaluation + lightweight safety checks
 
 ## Pipeline
-1. **ETL / Dataset Construction**
-   - Load raw text documents (public or synthetic)
-   - Clean and structure into training examples
+1. **Build dataset**
+   - Load public-domain text or synthetic examples
+   - Clean and structure into training instances
 
-2. **Preference Data**
-   - Create (prompt, chosen, rejected) pairs
-   - Support both human-labeled preferences and simulated preferences for demo purposes
+2. **Create preferences**
+   - Convert each prompt into (chosen, rejected) pairs
+   - Supports simulated preferences for demo purposes
 
-3. **Optimization**
-   - Train a lightweight reward model or scoring function
-   - Optimize a policy using DPO/GRPO-style objectives (demo-scale)
+3. **Train / optimize**
+   - Train a lightweight reward/scoring model (demo-safe)
+   - Optimize a policy using a DPO/GRPO-style objective (demo-scale)
 
-4. **Evaluation**
-   - Offline metrics (e.g., preference accuracy, rubric scores)
-   - Basic safety checks (heuristic or model-based placeholders)
+4. **Evaluate**
+   - Preference agreement / win-rate
+   - Rubric-style heuristic scores (clarity, specificity, groundedness)
+   - Basic safety checks (placeholder heuristics)
 
 ## Data
-- Uses public-domain text or synthetic examples for demonstration.
-- Original datasets and internal tooling from research/industry collaborations are not publicly shareable.
+- Uses public-domain or synthetic text for demonstration.
+- Original datasets and internal application integrations from research/industry collaborations are not publicly shareable.
 
-## How to Run (Demo)
+## Quickstart (Demo)
 ```bash
 pip install -r requirements.txt
-python src/build_dataset.py
-python src/make_preferences.py
-python src/train_policy.py
-python src/evaluate.py
+python -m src.build_dataset
+python -m src.make_preferences
+python -m src.train_policy
+python -m src.evaluate
